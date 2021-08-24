@@ -44,10 +44,10 @@ if __name__=="__main__":
             price_column = prices['Price']
             highest_value = price_column.max()
             highest_value_name = price_column.idxmax()
+            
             print("The highest valued cryptocurrency of those you searched is {name}, which is worth {value} at {current_date}".format(
                 name = highest_value_name, value = highest_value, current_date = date.today())
             )
-
 
         except requests.exceptions.HTTPError:
             print("An error occured finding cryptocurrency prices. Please be sure that the correct abbreviation was used for each currency")
