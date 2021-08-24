@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import sys
 
+# get_price takes in a list of cryptocurrencies and returns a dataframe of their names and current prices
 def get_price(cryptos, exchange='bitfinex'):
     # make an dict of all of the prices and their names
     names = []
