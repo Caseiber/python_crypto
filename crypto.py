@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import sys
+from datetime import date
 
 # get_price takes in a list of cryptocurrencies and returns a dataframe of their names and current prices
 def get_price(cryptos, exchange='bitfinex'):
@@ -39,6 +40,15 @@ if __name__=="__main__":
         try:
             prices = get_price(cryptos)
             print(prices)
+
+            price_column = prices['Price']
+            highest_value = price_column.max()
+            highest_value_name = price_column.idxmax()
+            print("The highest valued cryptocurrency of those you searched is {name}, which is worth {value} at {current_date}".format(
+                name = highest_value_name, value = highest_value, current_date = date.today())
+            )
+
+
         except requests.exceptions.HTTPError:
             print("An error occured finding cryptocurrency prices. Please be sure that the correct abbreviation was used for each currency")
     # print a concerned warning if nothing or more than one argument is passed in
