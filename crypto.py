@@ -40,8 +40,11 @@ if __name__=="__main__":
     # read in the names of the cryptocurrencies from the arguments
     if len(sys.argv) == 2:
         cryptos = sys.argv[1].split(',')
-        prices = get_price(cryptos)
-        print(prices)
+        try:
+            prices = get_price(cryptos)
+            print(prices)
+        except requests.exceptions.HTTPError:
+            print("An error occured finding cryptocurrency prices. Please be sure that the correct abbreviation was used for each currency")
     # print a concerned warning if nothing or more than one argument is passed in
     else:
         print("Please pass in the names of the cryptocurrencies to check as comma separate values with no spaces in between.")
