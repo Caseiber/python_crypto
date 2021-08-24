@@ -4,7 +4,7 @@ import sys
 
 # get_price takes in a list of cryptocurrencies and returns a dataframe of their names and current prices
 def get_price(cryptos, exchange='bitfinex'):
-    # make an dict of all of the prices and their names
+    # make lists of all of the prices and their names
     names = []
     prices = []
 
@@ -23,14 +23,10 @@ def get_price(cryptos, exchange='bitfinex'):
 
         names.append(crypto)
         prices.append(data['result']['price'])
-        # prices[crypto] = data['result']
     
-    data = {
-        'name': names,
-        'price': prices
-    }
     # pass that array into pandas
-    df = pd.DataFrame.from_dict(data)
+    df = pd.DataFrame(prices, index=names, columns=['Price'])
+    df.index.name = 'Name'
     
     # return the data frame
     return df
